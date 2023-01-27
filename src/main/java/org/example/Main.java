@@ -39,7 +39,7 @@ public class Main
         LOGGER.info("Enetr the NewCardNumber:");
         long newCardNumber=input.nextLong();
         String checkNumber=String.valueOf(creaditCard.checkNumber(newCardNumber));
-        if(checkNumber=="true")
+        if(checkNumber.equals("true"))
             LOGGER.info("Cardnumber is equal");
         else {
             LOGGER.info("Cardnumber is not equal");
