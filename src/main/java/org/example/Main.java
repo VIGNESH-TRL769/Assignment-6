@@ -17,7 +17,7 @@ class CreaditCard implements Cloneable
     {
         return super.clone();
     }
-    Boolean Check(long newCardNumber)
+    Boolean checkNumber(long newCardNumber)
     {
         return cardNumber==newCardNumber;
     }
@@ -38,12 +38,13 @@ public class Main
         CreaditCard cloneCreaditCard=(CreaditCard) creaditCard.clone();
         LOGGER.info("Enetr the NewCardNumber:");
         long newCardNumber=input.nextLong();
-        if(!(creaditCard.Check(newCardNumber))) {
+        if((creaditCard.checkNumber(newCardNumber))) 
+            LOGGER.info("Cardnumber is equal");
+        else {
             LOGGER.info("Cardnumber is not equal");
             cloneCreaditCard.cardNumber = newCardNumber;
         }
-        else
-            LOGGER.info("Cardnumber is equal");
+           
         String oldcard="Original Details:Holder Name:"+name+" Card Number:"+cardNumber+" Experied Date:"+expirationDate;
         String newCaed="Cloned Details:Holder Name:"+cloneCreaditCard.name+" Card Number:"+cloneCreaditCard.cardNumber+" Experied Date:"+cloneCreaditCard.expirationDate;
         LOGGER.info(oldcard);
