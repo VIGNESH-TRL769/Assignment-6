@@ -28,6 +28,7 @@ public class Main
     public static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     public static void main(String[] args) throws CloneNotSupportedException {
         Scanner input=new Scanner(System.in);
+        try {
         LOGGER.info("Enetr the HolderName:");
         String name=input.nextLine();
         LOGGER.info("Enetr the CardNumber:");
@@ -50,5 +51,11 @@ public class Main
         String newCaed="Cloned Details:Holder Name:"+cloneCreaditCard.name+" Card Number:"+cloneCreaditCard.cardNumber+" Experied Date:"+cloneCreaditCard.expirationDate;
         LOGGER.info(oldcard);
         LOGGER.info(newCaed);
+    }catch(Exception e)
+        {
+            String value = "Please Enter Valid Numbers:" + e;
+            LOGGER.info(value);
+            input.nextLine();
+        }
     }
 }
