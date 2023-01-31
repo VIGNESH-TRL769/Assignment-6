@@ -1,7 +1,7 @@
 package org.example;
 import java.util.Scanner;
 import java.util.logging.Logger;
-class CreaditCard implements Cloneable
+class CreaditCard
 {
     String name;
     long cardNumber;
@@ -11,11 +11,12 @@ class CreaditCard implements Cloneable
         this.name=name;
         this.cardNumber=cardNumber;
         this.expirationDate=expirationDate;
-
     }
-    public Object clone() throws CloneNotSupportedException
+    CreaditCard(CreaditCard object)
     {
-        return super.clone();
+        name=object.name;
+        cardNumber=object.cardNumber;
+        expirationDate= object.expirationDate;
     }
     Boolean checkNumber(long newCardNumber)
     {
@@ -26,7 +27,8 @@ class CreaditCard implements Cloneable
 public class Main
 {
     public static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args)
+    {
         Scanner input=new Scanner(System.in);
         LOGGER.info("Enetr the HolderName:");
         String name=input.nextLine();
@@ -35,7 +37,7 @@ public class Main
         LOGGER.info("Enetr the ExpirationDate:");
         String expirationDate=input.next();
         CreaditCard creaditCard=new CreaditCard(name,cardNumber,expirationDate);
-        CreaditCard cloneCreaditCard=(CreaditCard) creaditCard.clone();
+        CreaditCard cloneCreaditCard=new CreaditCard(creaditCard);
         LOGGER.info("Enetr the NewCardNumber:");
         long newCardNumber=input.nextLong();
         String checkNumber=String.valueOf(creaditCard.checkNumber(newCardNumber));
@@ -50,6 +52,6 @@ public class Main
         String newCaed="Cloned Details:Holder Name:"+cloneCreaditCard.name+" Card Number:"+cloneCreaditCard.cardNumber+" Experied Date:"+cloneCreaditCard.expirationDate;
         LOGGER.info(oldcard);
         LOGGER.info(newCaed);
-    
+
     }
 }
