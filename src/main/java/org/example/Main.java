@@ -1,49 +1,32 @@
 package org.example;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-public class Main {
-    public static final Logger LOGGER = Logger.getLogger("InfoLogging");
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        float gpa;
-        LOGGER.info("Enter the Student Name:");
-        String name = input.nextLine();
-        while (true) {
-            LOGGER.info("Enter the GPA:");
-            gpa = input.nextFloat();
-            if (gpa > 0 && gpa <= 10) {
-                break;
-            } else {
-                LOGGER.info("Please enter Valid GPA");
-            }
+public class Main
+{
+    public static final Logger LOGGER =  Logger.getLogger("InfoLogging");
+    public static void main(String[] args)
+    {
+        Scanner input=new Scanner(System.in);
+        LOGGER.info("Enetr the HolderName:");
+        String name=input.nextLine();
+        LOGGER.info("Enetr the CardNumber:");
+        long cardNumber=input.nextLong();
+        LOGGER.info("Enetr the ExpirationDate:");
+        String expirationDate=input.next();
+        CreaditCard creaditCard=new CreaditCard(name,cardNumber,expirationDate);
+        CreaditCard cloneCreaditCard=new CreaditCard(creaditCard);
+        LOGGER.info("Enetr the NewCardNumber:");
+        long newCardNumber=input.nextLong();
+        String checkNumber=String.valueOf(creaditCard.checkNumber(newCardNumber));
+        if(checkNumber.equals("true"))
+            LOGGER.info("Cardnumber is equal");
+        else {
+            LOGGER.info("Cardnumber is not equal");
+            cloneCreaditCard.cardNumber = newCardNumber;
         }
-        LOGGER.info("Enter the gradeLevel:");
-        String grade = input.next();
-        Student student = new Student(name, gpa, grade);
-        int temp = 0;
-        do {
-            LOGGER.info("\n1.Update\n2.CheckData\n3.Exit\nEnter the Choice:");
-            int key = input.nextInt();
-            switch (key) {
-                case 1 -> {
-                    LOGGER.info("Enter the GPA:");
-                    float value = input.nextFloat();
-                    if (value > 0 && value <= 10)
-                        student.update(value);
-                    else
-                        LOGGER.info("please enter valid GPA");
-                }
-
-                case 2 -> {
-                    String content = student.display();
-                    LOGGER.info(content);
-                }
-                default -> {
-                    temp = 1;
-                    LOGGER.info("---Thank You---");
-                }
-            }
-        }while (temp != 1);
+        String oldcard="Original Details:Holder Name:"+name+" Card Number:"+cardNumber+" Experied Date:"+expirationDate;
+        String newCaed="Cloned Details:Holder Name:"+cloneCreaditCard.name+" Card Number:"+cloneCreaditCard.cardNumber+" Experied Date:"+cloneCreaditCard.expirationDate;
+        LOGGER.info(oldcard);
+        LOGGER.info(newCaed);
     }
 }
